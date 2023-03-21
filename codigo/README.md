@@ -1,5 +1,14 @@
 # Código do Projeto
 
-Mantenha neste diretório todo o código fonte do projeto.
+Os métodos `Grafo.carregar()` e `Grafo.salvar()` utilizam o seguinte padrão para arquivos .csv
 
-Se necessário, descreva neste arquivo aspectos relevantes da estrutura de diretórios criada para organização do código.
+```csv
+origem,destino,peso
+1,2,5
+1,3,2
+2,3,1.5
+3,4,3
+2,4,2
+```
+
+> A "coluna" peso é opcional

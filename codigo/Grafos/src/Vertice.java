@@ -106,4 +106,10 @@ public class Vertice {
 	public boolean visitado() {
 		return this.visitado;
 	}
+
+	public Aresta[] listaArestas() {
+		Aresta[] listaArestas = new Aresta[arestas.size()];
+		arestas.allElements(listaArestas);
+		return listaArestas;
+	}
 }

@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
 /** 
  * MIT License
  *
@@ -26,8 +29,7 @@
  * Classe básica para um Grafo simples não direcionado.
  */
 public class Grafo {
-	private static final String[] ARQUIVO_CABECALHO = { "origem", "destino", "peso" };
-	private static final String ARQUIVO_CAMINHO = "../arquivo/";
+	private static final String CABECALHO_ARQUIVO = "origem,destino,peso\n";
 	public final String nome;
 	private ABB<Vertice> vertices;
 
@@ -37,8 +39,7 @@ public class Grafo {
 
 	/**
 	 * Construtor. Cria um grafo vazio com um nome escolhido pelo usuário. Em caso
-	 * de nome não informado
-	 * (string vazia), recebe o nome genérico "Grafo"
+	 * de nome não informado (string vazia), recebe o nome genérico "Grafo"
 	 */
 	public Grafo(String nome) {
 		if (nome.length() == 0)
@@ -62,8 +63,20 @@ public class Grafo {
 
 	}
 
-	public void salvar(String nomeArquivo) {
+	public void salvar(String nomeArquivo) throws IOException {
+		FileWriter novoArquivo = new FileWriter(nomeArquivo);
+		novoArquivo.write(CABECALHO_ARQUIVO);
 
+		Vertice[] listaVertices = listaVertices();
+		for (Vertice vertice : listaVertices) {
+			Aresta[] listaArestas = vertice.listaArestas();
+			for (Aresta aresta : listaArestas) {
+				String aux = String.valueOf(vertice.getId()) + "," + String.valueOf(aresta.destino()) + ","
+						+ String.valueOf(aresta.peso()) + "\n";
+				novoArquivo.append(aux);
+			}
+		}
+		novoArquivo.close();
 	}
 
 	/**
@@ -84,7 +97,7 @@ public class Grafo {
 	}
 
 	public Vertice existeVertice(int idVertice) {
-		return null;
+		return vertices.find(idVertice);
 	}
 
 	/**
@@ -135,4 +148,9 @@ public class Grafo {
 		return Integer.MIN_VALUE;
 	}
 
+	public Vertice[] listaVertices() {
+		Vertice[] listaVertices = new Vertice[vertices.size()];
+		vertices.allElements(listaVertices);
+		return listaVertices;
+	}
 }

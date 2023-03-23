@@ -67,7 +67,7 @@ public class Grafo {
 		FileWriter novoArquivo = new FileWriter(nomeArquivo);
 		novoArquivo.write(CABECALHO_ARQUIVO);
 
-		Vertice[] listaVertices = listaVertices();
+		Vertice[] listaVertices = listaVertices(this.vertices.size());
 		for (Vertice vertice : listaVertices) {
 			Aresta[] listaArestas = vertice.listaArestas();
 			for (Aresta aresta : listaArestas) {
@@ -136,6 +136,11 @@ public class Grafo {
 
 	public Grafo subGrafo(Lista<Integer> vertices) {
 		Grafo subgrafo = new Grafo("Subgrafo de " + this.nome);
+		
+		Vertice[] listaVertices = listaVertices(vertices.size());
+		for(Vertice v : listaVertices)
+			subgrafo.addVertice(v);
+		
 
 		return subgrafo;
 	}
@@ -148,8 +153,8 @@ public class Grafo {
 		return Integer.MIN_VALUE;
 	}
 
-	public Vertice[] listaVertices() {
-		Vertice[] listaVertices = new Vertice[vertices.size()];
+	public Vertice[] listaVertices(int tamanho) {
+		Vertice[] listaVertices = new Vertice[tamanho];
 		vertices.allElements(listaVertices);
 		return listaVertices;
 	}

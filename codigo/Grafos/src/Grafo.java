@@ -1,7 +1,5 @@
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -62,21 +60,6 @@ public class Grafo {
 		return this.nome;
 	}
 
-	// REALIZADO POR ERIC 25/03
-	public void carregar(String nomeArquivo) throws FileNotFoundException {
-		Scanner s = new Scanner(new FileReader("./" + nomeArquivo));
-		while (s.hasNext()) {
-			String l = s.nextLine();
-			l.split(",");
-			String array[] = new String[3];
-			array = l.split(";");
-			for (int i = 0; i < array.length; i++) {
-				if (this.existeVertice(Integer.parseInt(array[i])) == null) {
-					this.addVertice(Integer.parseInt(array[i]));
-				}
-			}
-		}
-	}
 
 	public void salvar(String nomeArquivo) throws IOException {
 		FileWriter novoArquivo = new FileWriter(nomeArquivo);

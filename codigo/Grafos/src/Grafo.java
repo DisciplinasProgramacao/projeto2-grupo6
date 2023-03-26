@@ -1,5 +1,7 @@
-import java.io.*;
-import java.util.Arrays;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -60,6 +62,30 @@ public class Grafo {
 		return this.nome;
 	}
 
+	// REALIZADO POR ERIC 25/03
+	public void carregar(String nomeArquivo) throws FileNotFoundException {
+		Scanner s = new Scanner(new FileReader("./" + nomeArquivo));
+		while (s.hasNext()) {
+			String l = s.nextLine();
+			String array[] = new String[3];
+			array = l.split(",");
+			int vertexOrigin = Integer.parseInt(array[0]);
+			int vertexDestiny = Integer.parseInt(array[1]);
+			Integer weight = Integer.parseInt(array[2]);
+
+			if (this.existeVertice(vertexOrigin) == null) {
+				this.addVertice(vertexOrigin);
+			}
+			if (this.existeVertice(vertexDestiny) == null) {
+				this.addVertice(vertexDestiny);
+			}
+			if (weight == null)
+				this.addAresta(vertexOrigin, vertexDestiny, 0);
+			else
+				this.addAresta(vertexOrigin, vertexDestiny, weight);
+
+		}
+	}
 
 	public void salvar(String nomeArquivo) throws IOException {
 		FileWriter novoArquivo = new FileWriter(nomeArquivo);
@@ -151,4 +177,5 @@ public class Grafo {
 		vertices.allElements(listaVertices);
 		return listaVertices;
 	}
+
 }

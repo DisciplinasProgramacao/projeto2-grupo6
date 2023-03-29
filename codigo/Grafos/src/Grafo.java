@@ -1,7 +1,8 @@
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
-/** 
+/**
  * MIT License
  *
  * Copyright(c) 2021-23 João Caram <caram@pucminas.br>
@@ -52,16 +53,13 @@ public class Grafo {
 	/**
 	 * Retorna o nome do grafo (string), caso seja necessário em outras
 	 * classes/sistemas
-	 * 
+	 *
 	 * @return O nome do grafo (uma string)
 	 */
 	public String nome() {
 		return this.nome;
 	}
 
-	public void carregar(String nomeArquivo) {
-
-	}
 
 	public void salvar(String nomeArquivo) throws IOException {
 		FileWriter novoArquivo = new FileWriter(nomeArquivo);
@@ -82,7 +80,7 @@ public class Grafo {
 	/**
 	 * Adiciona um vértice com o id especificado. Ignora a ação e retorna false se
 	 * já existir um vértice com este id
-	 * 
+	 *
 	 * @param id O identificador do vértice a ser criado/adicionado
 	 * @return TRUE se houve a inclusão do vértice, FALSE se já existia vértice com
 	 *         este id
@@ -105,7 +103,7 @@ public class Grafo {
 	 * existam no grafo.
 	 * Caso a aresta já exista, ou algum dos vértices não existir, o comando é
 	 * ignorado e retorna FALSE.
-	 * 
+	 *
 	 * @param origem  Vértice de origem
 	 * @param destino Vértice de destino
 	 * @param peso    Peso da aresta

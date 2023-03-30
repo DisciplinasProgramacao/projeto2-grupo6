@@ -1,6 +1,9 @@
 import java.io.*;
+import java.security.InvalidParameterException;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import javax.swing.text.html.ListView;
 
 /**
  * MIT License
@@ -132,14 +135,26 @@ public class Grafo {
 		return false;
 	}
 
-	public Grafo subGrafo(Lista<Integer> vertices) {
+	public Grafo subGrafo(Lista<Integer> vertices) throws InvalidParameterException {
 		Grafo subgrafo = new Grafo("Subgrafo de " + this.nome);
 		
 		Vertice[] listaVertices = listaVertices(vertices.size());
-		for(Vertice v : listaVertices)
-			subgrafo.addVertice(v);
-		
+		for(Vertice v : listaVertices) {
+			if ( this.existeVertice(v.getId()) == null ) {
+				throw new InvalidParameterException("Um vertice não pertence ao Grafo original");
+			}
 
+			subgrafo.addVertice(v.getId());
+		}
+
+		for(Vertice v : listaVertices) {
+			for(Aresta a : v.listaArestas()) {
+				if( subgrafo.existeVertice(a.destino()) == null ) {
+					v.removeAresta(a.destino());
+				}
+			}
+		}
+		
 		return subgrafo;
 	}
 

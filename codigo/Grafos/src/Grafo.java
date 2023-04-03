@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.security.InvalidParameterException;
 import java.util.Arrays;
 
 /**
@@ -179,9 +180,26 @@ public class Grafo {
 		return false;
 	}
 
-	public Grafo subGrafo(Lista<Integer> vertices) {
+	public Grafo subGrafo(Lista<Integer> vertices) throws InvalidParameterException {
 		Grafo subgrafo = new Grafo("Subgrafo de " + this.nome);
+		
+		Vertice[] listaVertices = listaVertices();
+		for(Integer i : vertices.allElements(null)) {
+			if ( this.existeVertice(i) == null ) {
+				throw new InvalidParameterException("Um vertice não pertence ao Grafo original");
+			}
 
+			subgrafo.addVertice(i);
+		}
+
+		for(Vertice v : listaVertices) {
+			for(Aresta a : v.listaArestas()) {
+				if( this.existeVertice(a.destino()) != null ) {
+					subgrafo.addAresta(v.getId(), a.destino());
+				}
+			}
+		}
+		
 		return subgrafo;
 	}
 

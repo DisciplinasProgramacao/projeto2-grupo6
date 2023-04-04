@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public abstract class GrafoMutavel extends Grafo {
 
@@ -65,17 +66,23 @@ public abstract class GrafoMutavel extends Grafo {
 
 	public void salvar(String nomeArquivo) throws IOException {
 		FileWriter novoArquivo = new FileWriter(nomeArquivo);
-		novoArquivo.write(CABECALHO_ARQUIVO);
+		novoArquivo.write("origem,destino,peso\\n");
 
-		Vertice[] listaVertices = listaVertices();
-		for (Vertice vertice : listaVertices) {
-			Aresta[] listaArestas = vertice.listaArestas();
+		TreeMap<Integer, Vertice> treeMap = this.vertices.getTreeMap();
+
+		treeMap.forEach((key, vertices) -> {
+			Aresta[] listaArestas = vertices.listaArestas();
 			for (Aresta aresta : listaArestas) {
-				String aux = String.valueOf(vertice.getId()) + "," + String.valueOf(aresta.destino()) + ","
+				String aux = String.valueOf(vertices.getId()) + "," + String.valueOf(aresta.destino()) + ","
 						+ String.valueOf(aresta.peso()) + "\n";
-				novoArquivo.append(aux);
+				try {
+					novoArquivo.append(aux);
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
 			}
-		}
+		});
+
 		novoArquivo.close();
 	}
 }

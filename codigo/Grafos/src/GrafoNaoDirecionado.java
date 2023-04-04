@@ -10,33 +10,6 @@ public class GrafoNaoDirecionado extends GrafoMutavel {
 	}
 
 	@Override
-	public void carregar(String nomeArquivo) throws FileNotFoundException {
-
-		try {
-			Scanner sc = new Scanner(new File(nomeArquivo));
-			String linha = "";
-			String[] item;
-			int key;
-
-			while (sc.hasNextLine()){
-				linha = sc.nextLine();
-				item = linha.split(",");
-
-				Vertice origem = new Vertice(Integer.parseInt(item[0]));
-				vertices.add(Integer.parseInt(item[0]), origem);
-				origem.addAresta(Integer.parseInt(item[1]));
-
-				Vertice destino = new Vertice(Integer.parseInt(item[1]));
-				vertices.add(Integer.parseInt(item[1]), destino);
-				destino.addAresta(Integer.parseInt(item[0]));
-			}
-			sc.close();
-		} catch (FileNotFoundException e) {
-			System.out.println("Arquivo não encontrado");
-		}
-	}
-
-	@Override
 	public boolean addAresta(int origem, int destino, int peso) {
 		boolean result = false;
 		Vertice v_origin = this.existeVertice(origem);

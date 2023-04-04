@@ -1,4 +1,8 @@
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public abstract class GrafoMutavel extends Grafo {
 
@@ -7,7 +11,6 @@ public abstract class GrafoMutavel extends Grafo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public abstract void carregar(String nomeArquivo) throws FileNotFoundException;
 	public boolean addVertice(int id) {
 		Vertice verticeNovo = new Vertice(id);
 		return this.vertices.add(id, verticeNovo);
@@ -30,13 +33,49 @@ public abstract class GrafoMutavel extends Grafo {
 		return vertices.remove(id);
 	}
 
+	public abstract boolean addAresta(int origem, int destino, int peso);
 
+	public abstract Aresta removAresta(int origem, int destino);
 
-	public boolean addAresta(int origem, int destino) {
-		return false;
+	public void carregar(String nomeArquivo) throws FileNotFoundException {
+
+		try {
+			Scanner sc = new Scanner(new File(nomeArquivo));
+			String linha = "";
+			String[] item;
+
+			while (sc.hasNextLine()){
+				linha = sc.nextLine();
+				item = linha.split(",");
+
+				Vertice origem = new Vertice(Integer.parseInt(item[0]));
+				vertices.add(Integer.parseInt(item[0]), origem);
+				origem.addAresta(Integer.parseInt(item[1]));
+
+				Vertice destino = new Vertice(Integer.parseInt(item[1]));
+				vertices.add(Integer.parseInt(item[1]), destino);
+
+			}
+
+			sc.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Arquivo não encontrado");
+		}
 	}
 
-	public Aresta removAresta(int origem, int destino) {
-		return null;
+	public void salvar(String nomeArquivo) throws IOException {
+		FileWriter novoArquivo = new FileWriter(nomeArquivo);
+		novoArquivo.write(CABECALHO_ARQUIVO);
+
+		Vertice[] listaVertices = listaVertices();
+		for (Vertice vertice : listaVertices) {
+			Aresta[] listaArestas = vertice.listaArestas();
+			for (Aresta aresta : listaArestas) {
+				String aux = String.valueOf(vertice.getId()) + "," + String.valueOf(aresta.destino()) + ","
+						+ String.valueOf(aresta.peso()) + "\n";
+				novoArquivo.append(aux);
+			}
+		}
+		novoArquivo.close();
 	}
 }

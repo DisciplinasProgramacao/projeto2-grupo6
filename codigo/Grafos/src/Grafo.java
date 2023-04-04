@@ -71,22 +71,6 @@ public class Grafo {
 
 	}
 
-	public void salvar(String nomeArquivo) throws IOException {
-		FileWriter novoArquivo = new FileWriter(nomeArquivo);
-		novoArquivo.write(CABECALHO_ARQUIVO);
-
-		Vertice[] listaVertices = listaVertices();
-		for (Vertice vertice : listaVertices) {
-			Aresta[] listaArestas = vertice.listaArestas();
-			for (Aresta aresta : listaArestas) {
-				String aux = String.valueOf(vertice.getId()) + "," + String.valueOf(aresta.destino()) + ","
-						+ String.valueOf(aresta.peso()) + "\n";
-				novoArquivo.append(aux);
-			}
-		}
-		novoArquivo.close();
-	}
-
 	/**
 	 * Adiciona um vértice com o id especificado. Ignora a ação e retorna false se
 	 * já existir um vértice com este id

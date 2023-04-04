@@ -1,10 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.security.InvalidParameterException;
-import java.util.Arrays;
 
 /**
  * MIT License
@@ -156,7 +150,7 @@ public class Grafo {
 		return Integer.MIN_VALUE;
 	}
 
-	private Vertice[] listaVertices() {
+	protected Vertice[] listaVertices() {
 		Vertice[] listaVertices = new Vertice[vertices.size()];
 		vertices.allElements(listaVertices);
 		return listaVertices;

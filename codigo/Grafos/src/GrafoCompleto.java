@@ -1,11 +1,11 @@
+
 public class GrafoCompleto extends Grafo {
 
     public GrafoCompleto(String nome) {
         super(nome);
     }
 
-    public void GrafoCompleto(int ordem) {
-
+    public void GrafoCompletoBuild(int ordem) {
         int peso = -1;
         if (!this.completo()) {
             for (Vertice verticeOrigem : this.vertices.allElements(null)) {
@@ -18,4 +18,3 @@ public class GrafoCompleto extends Grafo {
         }
     }
 }
-

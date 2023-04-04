@@ -38,9 +38,6 @@ public class Grafo {
 	public final String nome;
 	private ABB<Vertice> vertices;
 
-	public static Grafo grafoCompleto(int ordem) {
-		return null;
-	}
 
 	/**
 	 * Construtor. Cria um grafo vazio com um nome escolhido pelo usuário. Em caso

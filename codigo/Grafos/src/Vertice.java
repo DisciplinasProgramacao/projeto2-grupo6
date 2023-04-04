@@ -112,4 +112,8 @@ public class Vertice {
 		arestas.allElements(listaArestas);
 		return listaArestas;
 	}
+
+	public Lista<Integer> vizinhos() {
+		return null;
+	}
 }

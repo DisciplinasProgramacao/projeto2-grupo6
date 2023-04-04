@@ -36,7 +36,7 @@ import java.util.Arrays;
 public class Grafo {
 	private static final String CABECALHO_ARQUIVO = "origem,destino,peso\n";
 	public final String nome;
-	private ABB<Vertice> vertices;
+	protected ABB<Vertice> vertices;
 
 	/**
 	 * Construtor. Cria um grafo vazio com um nome escolhido pelo usuário. Em caso

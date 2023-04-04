@@ -38,10 +38,6 @@ public class Grafo {
 	public final String nome;
 	private ABB<Vertice> vertices;
 
-	public static Grafo grafoCompleto(int ordem) {
-		return null;
-	}
-
 	/**
 	 * Construtor. Cria um grafo vazio com um nome escolhido pelo usuário. Em caso
 	 * de nome não informado (string vazia), recebe o nome genérico "Grafo"
@@ -65,12 +61,10 @@ public class Grafo {
 	}
 
 	public void carregar(String nomeArquivo) throws FileNotFoundException {
-
 		FileReader fr = new FileReader(nomeArquivo);
 		BufferedReader br = new BufferedReader(fr);
 
 		try {
-
 			String linha = br.readLine();
 			String[] verticesLidos = linha.split(",");
 
@@ -182,24 +176,23 @@ public class Grafo {
 
 	public Grafo subGrafo(Lista<Integer> vertices) throws InvalidParameterException {
 		Grafo subgrafo = new Grafo("Subgrafo de " + this.nome);
-		
+
 		Vertice[] listaVertices = listaVertices();
-		for(Integer i : vertices.allElements(null)) {
-			if ( this.existeVertice(i) == null ) {
+		for (Integer i : vertices.allElements(null)) {
+			if (this.existeVertice(i) == null) {
 				throw new InvalidParameterException("Um vertice não pertence ao Grafo original");
 			}
-
 			subgrafo.addVertice(i);
 		}
 
-		for(Vertice v : listaVertices) {
-			for(Aresta a : v.listaArestas()) {
-				if( this.existeVertice(a.destino()) != null ) {
+		for (Vertice v : listaVertices) {
+			for (Aresta a : v.listaArestas()) {
+				if (this.existeVertice(a.destino()) != null) {
 					subgrafo.addAresta(v.getId(), a.destino());
 				}
 			}
 		}
-		
+
 		return subgrafo;
 	}
 
@@ -211,7 +204,7 @@ public class Grafo {
 		return Integer.MIN_VALUE;
 	}
 
-	public Vertice[] listaVertices() {
+	private Vertice[] listaVertices() {
 		Vertice[] listaVertices = new Vertice[vertices.size()];
 		vertices.allElements(listaVertices);
 		return listaVertices;

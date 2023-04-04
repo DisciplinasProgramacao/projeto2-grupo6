@@ -11,12 +11,11 @@ public class GrafoCompleto extends Grafo {
             for (Vertice verticeOrigem : this.vertices.allElements(null)) {
                 for (Vertice verticeDestino : this.vertices.allElements(null)) {
                     if (verticeOrigem.existeAresta(verticeDestino.getId()) == null) {
-                        verticeOrigem.addAresta(verticeDestino.getId(), peso);
+                        this.addAresta(verticeOrigem.getId(), verticeDestino.getId(), peso);
                     }
                 }
             }
         }
-
-
     }
 }
+

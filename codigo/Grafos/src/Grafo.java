@@ -155,4 +155,12 @@ public class Grafo {
 		vertices.allElements(listaVertices);
 		return listaVertices;
 	}
+
+	public Grafo bfs(int idVerticeInicio) {
+		return null;
+	}
+
+	public Grafo dfs(int idVerticeInicio) {
+		return null;
+	}
 }

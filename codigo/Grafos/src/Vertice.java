@@ -50,7 +50,7 @@ public class Vertice {
 	}
 
 	public boolean addAresta(int destino) {
-		return false;
+		return this.arestas.add(destino, new Aresta(-1, destino));
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class Vertice {
 	}
 
 	public Aresta existeAresta(int destino) {
-		return null;
+		return arestas.find(destino);
 
 	}
 
@@ -81,28 +81,17 @@ public class Vertice {
 	}
 
 	public int grau() {
-		return Integer.MIN_VALUE;
+		return this.arestas.size();
 	}
 
-	/**
-	 * Marca o vértice como visitado
-	 */
 	public void visitar() {
 		this.visitado = true;
 	}
 
-	/**
-	 * Marca o vértice como não visitado
-	 */
-	public void limparVisita() {
+	public void limpaVisita() {
 		this.visitado = false;
 	}
 
-	/**
-	 * Indica se o vértice foi visitado (TRUE) ou não (FALSE)
-	 * 
-	 * @return TRUE/FALSE conforme o vértice tenha sido ou não visitado.
-	 */
 	public boolean visitado() {
 		return this.visitado;
 	}

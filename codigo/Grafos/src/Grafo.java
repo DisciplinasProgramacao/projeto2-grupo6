@@ -60,41 +60,6 @@ public class Grafo {
 		return this.nome;
 	}
 
-	public void carregar(String nomeArquivo) throws FileNotFoundException {
-		FileReader fr = new FileReader(nomeArquivo);
-		BufferedReader br = new BufferedReader(fr);
-
-		try {
-			//  despresando cabeçalho
-			String linha = br.readLine();
-			String[] column = linha.split(",");
-			
-	
-			while((linha = br.readLine()) != null){
-				
-				column = linha.split(",");
-
-				int origem = Integer.parseInt(column[0]);
-				int destino = Integer.parseInt(column[1]);
-				int peso = Integer.parseInt(column[2])
-
-				if(vertc)
-
-				if(column[2] == null){
-					this.addAresta()
-				}
-
-				
-			}
-
-
-			br.close();
-			fr.close();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-
 	public boolean addAresta(int origem, int destino) {
 		boolean adicionou = false;
 		Vertice saida = this.existeVertice(origem);

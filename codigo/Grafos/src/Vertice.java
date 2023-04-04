@@ -57,7 +57,7 @@ public class Vertice {
 	 * Adiciona uma aresta ponderada neste vértice para um destino
 	 * 
 	 * @param peso Peso da aresta
-	 * @param dest Vértice de destino
+	 * @param destino Vértice de destino
 	 * @return TRUE se foi inserida, FALSE caso já existisse e não foi inserida.
 	 */
 	public boolean addAresta(int destino, int peso) {

@@ -65,26 +65,29 @@ public class Grafo {
 		BufferedReader br = new BufferedReader(fr);
 
 		try {
+			//  despresando cabeçalho
 			String linha = br.readLine();
-			String[] verticesLidos = linha.split(",");
+			String[] column = linha.split(",");
+			
+	
+			while((linha = br.readLine()) != null){
+				
+				column = linha.split(",");
 
-			int qtdeArestas = Integer.parseInt(verticesLidos[1]);
+				int origem = Integer.parseInt(column[0]);
+				int destino = Integer.parseInt(column[1]);
+				int peso = Integer.parseInt(column[2])
 
-			linha = br.readLine();
-			String[] vetVertLidos = linha.split(",");
-			int[] vetVertLidosToInt = Arrays.stream(vetVertLidos).mapToInt(Integer::parseInt).toArray();
+				if(vertc)
 
-			for (int v : vetVertLidosToInt) {
-				this.addVertice(v);
+				if(column[2] == null){
+					this.addAresta()
+				}
+
+				
 			}
 
-			System.out.println("Arestas lidas : ");
-			for (int i = 0; i < qtdeArestas; i++) {
-				linha = br.readLine();
-				String[] arestasLidas = linha.split(",");
-				int[] arestasLidasToInt = Arrays.stream(arestasLidas).mapToInt(Integer::parseInt).toArray();
-				this.addAresta(arestasLidasToInt[0], arestasLidasToInt[1]);
-			}
+
 			br.close();
 			fr.close();
 		} catch (IOException ex) {

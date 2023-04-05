@@ -27,7 +27,7 @@ import java.security.InvalidParameterException;
 /**
  * Classe básica para um Grafo simples não direcionado.
  */
-public class Grafo {
+public abstract class Grafo {
 	private final String nome;
 	protected ABB<Vertice> vertices;
 

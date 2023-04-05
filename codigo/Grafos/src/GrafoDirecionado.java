@@ -1,7 +1,3 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 public class GrafoDirecionado extends GrafoMutavel {
 
 	/**
@@ -43,7 +39,7 @@ public class GrafoDirecionado extends GrafoMutavel {
 	 * @return aresta
 	 */
 	@Override
-	public Aresta removAresta(int origem, int destino) {
+	public Aresta removeAresta(int origem, int destino) {
 		return null;
 	}
 }

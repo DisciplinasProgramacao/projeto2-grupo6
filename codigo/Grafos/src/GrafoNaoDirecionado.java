@@ -1,7 +1,3 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 public class GrafoNaoDirecionado extends GrafoMutavel {
 
 	/**
@@ -9,7 +5,6 @@ public class GrafoNaoDirecionado extends GrafoMutavel {
 	 */
 	public GrafoNaoDirecionado(String nome) {
 		super(nome);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

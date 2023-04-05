@@ -3,7 +3,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.TreeMap;
 
 public abstract class GrafoMutavel extends Grafo {
 
@@ -12,52 +11,49 @@ public abstract class GrafoMutavel extends Grafo {
 	 */
 	public GrafoMutavel(String nome) {
 		super(nome);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * Metodo para adicionar um novo vertice ao grafo
+	 * Adiciona um vértice com o id especificado. Ignora a ação e retorna false se
+	 * já existir um vértice com este id
 	 *
-	 * @param id
-	 * @return booleano com true ou false para adição do vértice
+	 * @param id O identificador do vértice a ser criado/adicionado
+	 * @return TRUE se houve a inclusão do vértice, FALSE se já existia vértice com
+	 *         este id
 	 */
 	public boolean addVertice(int id) {
-		Vertice verticeNovo = new Vertice(id);
-		return this.vertices.add(id, verticeNovo);
+		Vertice novo = new Vertice(id);
+		return vertices.add(id, novo);
 	}
 
-	/**
-	 * Metodo de remoção do vertice
-	 *
-	 * @param id
-	 * @return id do vertice removido
-	 */
 	public Vertice removeVertice(int id) {
-
-		Vertice[] vertices1 = new Vertice[vertices.size()];
-		Vertice[] percorreVertice = vertices.allElements(vertices1);
-		Aresta aux;
-
-		for (int i = 1; i <= percorreVertice.length; i++) {
-			aux = percorreVertice[i].existeAresta(id);
-
-			if (aux != null) {
-				percorreVertice[i].removeAresta(id);
-			}
-		}
-
 		return vertices.remove(id);
 	}
 
 	/**
-	 * metodo abstrato booleano de adição de aresta
+	 * Adiciona uma aresta entre dois vértices do grafo, caso os dois vértices
+	 * existam no grafo.
+	 * Caso a aresta já exista, ou algum dos vértices não existir, o comando é
+	 * ignorado e retorna FALSE.
+	 *
+	 * @param origem  Vértice de origem
+	 * @param destino Vértice de destino
+	 * @param peso    Peso da aresta
+	 * @return TRUE se foi inserida, FALSE caso contrário
 	 */
-	public abstract boolean addAresta(int origem, int destino, int peso);
+	public boolean addAresta(int origem, int destino, int peso) {
+		boolean adicionou = false;
+		Vertice saida = this.existeVertice(origem);
+		Vertice chegada = this.existeVertice(destino);
+		if (saida != null && chegada != null) {
+			adicionou = (saida.addAresta(destino, peso) && chegada.addAresta(origem, peso));
+		}
+		return adicionou;
+	}
 
-	/**
-	 * metodo abstrato booleano de remoção de aresta
-	 */
-	public abstract Aresta removAresta(int origem, int destino);
+	public Aresta removeAresta(int origem, int destino) {
+		return vertices.find(origem).removeAresta(destino);
+	}
 
 	/**
 	 * metodo carregar grafo
@@ -65,55 +61,37 @@ public abstract class GrafoMutavel extends Grafo {
 	 * @param nomeArquivo
 	 */
 	public void carregar(String nomeArquivo) throws FileNotFoundException {
+		Scanner sc = new Scanner(new File(nomeArquivo));
+		String linha;
+		String[] itens;
 
-		try {
-			Scanner sc = new Scanner(new File(nomeArquivo));
-			String linha = "";
-			String[] item;
+		linha = sc.nextLine(); // ignorar cabeçalho
+		while (sc.hasNextLine()) {
+			linha = sc.nextLine();
+			itens = linha.split(",");
 
-			while (sc.hasNextLine()) {
-				linha = sc.nextLine();
-				item = linha.split(",");
+			int origem = Integer.parseInt(itens[0]);
+			int destino = Integer.parseInt(itens[1]);
+			int peso = Integer.parseInt(itens[2]);
 
-				Vertice origem = new Vertice(Integer.parseInt(item[0]));
-				vertices.add(Integer.parseInt(item[0]), origem);
-				origem.addAresta(Integer.parseInt(item[1]));
-
-				Vertice destino = new Vertice(Integer.parseInt(item[1]));
-				vertices.add(Integer.parseInt(item[1]), destino);
-
-			}
-
-			sc.close();
-		} catch (FileNotFoundException e) {
-			System.out.println("Arquivo não encontrado");
+			addAresta(origem, destino, peso);
 		}
+		sc.close();
 	}
 
-	/**
-	 * metodo para salvar o grafo
-	 * 
-	 * @param nomeArquivo
-	 */
 	public void salvar(String nomeArquivo) throws IOException {
 		FileWriter novoArquivo = new FileWriter(nomeArquivo);
-		novoArquivo.write("origem,destino,peso\\n");
+		novoArquivo.write("origem,destino,peso\n");
 
-		TreeMap<Integer, Vertice> treeMap = this.vertices.getTreeMap();
-
-		treeMap.forEach((key, vertices) -> {
-			Aresta[] listaArestas = vertices.listaArestas();
+		Vertice[] listaVertices = listaVertices();
+		for (Vertice vertice : listaVertices) {
+			Aresta[] listaArestas = vertice.listaArestas();
 			for (Aresta aresta : listaArestas) {
-				String aux = String.valueOf(vertices.getId()) + "," + String.valueOf(aresta.destino()) + ","
+				String aux = String.valueOf(vertice.getId()) + "," + String.valueOf(aresta.destino()) + ","
 						+ String.valueOf(aresta.peso()) + "\n";
-				try {
-					novoArquivo.append(aux);
-				} catch (IOException e) {
-					throw new RuntimeException(e);
-				}
+				novoArquivo.append(aux);
 			}
-		});
-
+		}
 		novoArquivo.close();
 	}
 }

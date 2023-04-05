@@ -56,7 +56,7 @@ public class Vertice {
 	/**
 	 * Adiciona uma aresta ponderada neste vértice para um destino
 	 * 
-	 * @param peso Peso da aresta
+	 * @param peso    Peso da aresta
 	 * @param destino Vértice de destino
 	 * @return TRUE se foi inserida, FALSE caso já existisse e não foi inserida.
 	 */

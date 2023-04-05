@@ -1,5 +1,5 @@
 public class GrafoCompleto extends Grafo {
-
+	
 	/**
 	 * Construtor de um grafo completo
 	 *

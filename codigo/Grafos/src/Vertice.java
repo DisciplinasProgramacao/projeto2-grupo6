@@ -88,7 +88,7 @@ public class Vertice {
 		this.visitado = true;
 	}
 
-	public void limpaVisita() {
+	public void limparVisita() {
 		this.visitado = false;
 	}
 

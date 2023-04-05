@@ -28,7 +28,6 @@ import java.security.InvalidParameterException;
  * Classe básica para um Grafo simples não direcionado.
  */
 public class Grafo {
-	private static final String CABECALHO_ARQUIVO = "origem,destino,peso\n";
 	public final String nome;
 	protected ABB<Vertice> vertices;
 
@@ -42,6 +41,10 @@ public class Grafo {
 		else
 			this.nome = nome;
 		this.vertices = new ABB<>();
+	}
+
+	public static Grafo grafoCompleto(int ordem) {
+		return new GrafoCompleto(ordem);
 	}
 
 	/**
@@ -62,7 +65,6 @@ public class Grafo {
 			adicionou = (saida.addAresta(destino) && chegada.addAresta(origem));
 		}
 		return adicionou;
-
 	}
 
 	/**
@@ -147,7 +149,7 @@ public class Grafo {
 	}
 
 	public int ordem() {
-		return Integer.MIN_VALUE;
+		return tamanho();
 	}
 
 	protected Vertice[] listaVertices() {

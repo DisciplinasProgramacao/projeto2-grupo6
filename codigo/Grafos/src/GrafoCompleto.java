@@ -1,5 +1,10 @@
 public class GrafoCompleto extends Grafo {
 
+	/**
+	 * Construtor de um grafo completo
+	 *
+	 * @param ordem
+	 */
 	public GrafoCompleto(int ordem) {
 		super("Grafo Completo");
 

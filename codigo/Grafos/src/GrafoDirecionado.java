@@ -4,10 +4,22 @@ import java.util.Scanner;
 
 public class GrafoDirecionado extends GrafoMutavel {
 
+	/**
+	 * construtor com super
+	 */
 	public GrafoDirecionado(String nome) {
 		super(nome);
 	}
 
+	/**
+	 * metodo para adicionar aresta a um vertice
+	 *
+	 * @param origin
+	 * @param destiny
+	 * @param weight
+	 *
+	 * @return booleano
+	 */
 	@Override
 	public boolean addAresta(int origin, int destiny, int weight) {
 
@@ -22,6 +34,14 @@ public class GrafoDirecionado extends GrafoMutavel {
 		return result;
 	}
 
+	/**
+	 * metodo para remocao de aresta
+	 * 
+	 * @param origin
+	 * @param destiny
+	 *
+	 * @return aresta
+	 */
 	@Override
 	public Aresta removAresta(int origem, int destino) {
 		return null;

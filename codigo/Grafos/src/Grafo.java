@@ -57,18 +57,42 @@ public class Grafo {
 		return this.nome;
 	}
 
+	/**
+	 * Retorna existencia do vertice
+	 *
+	 * @param id
+	 * @return vertice
+	 */
 	public Vertice existeVertice(int idVertice) {
 		return vertices.find(idVertice);
 	}
 
+	/**
+	 * Retorna existencia da Aresta
+	 *
+	 * @param IdVerticeA
+	 * @param IdVerticeB
+	 * @return aresta
+	 */
 	public Aresta existeAresta(int verticeA, int verticeB) {
 		return null;
 	}
 
+	/**
+	 * Retorna um boolean para grafo completo
+	 *
+	 * @return boolean
+	 */
 	public boolean completo() {
 		return false;
 	}
 
+	/**
+	 * Retorna um subgrafo
+	 *
+	 * @param ListaDeVertices
+	 * @return subgrafo
+	 */
 	public Grafo subGrafo(Lista<Integer> vertices) throws InvalidParameterException {
 		Grafo subgrafo = new Grafo("Subgrafo de " + this.nome);
 

@@ -6,7 +6,7 @@ public class App {
 	static Scanner entrada = new Scanner(System.in);
 
 	public static void main(String[] args) throws Exception {
-		Grafo g = new Grafo("grafo");
+		Grafo g = null;
 		menu();
 		int opcao = entrada.nextInt();
 		while (opcao != 0) {
@@ -43,12 +43,18 @@ public class App {
 		System.out.println("obrigado por usar nosso aplicativo, até a próxima");
 	}
 
+	/**
+	 * Gerar sub-grafo
+	 */
 	private static void gerarSubGrafo(Grafo g) {
 		System.out.println();
 		System.out.println("6 - Gerar Sub Grafo");
 		g.subGrafo(null);
 	}
 
+	/**
+	 * Gerar Grafo Não Direcionado
+	 */
 	private static void gerarGrafoNaoDirecionado(Grafo g) {
 		System.out.println();
 		System.out.println("5 - Gerar grafo não-direcionado");
@@ -56,18 +62,27 @@ public class App {
 
 	}
 
+	/**
+	 * Gerar Grafo Direcionado
+	 */
 	private static void gerarGrafoDirecionado(Grafo g) {
 		System.out.println();
 		System.out.println("4 - Gerar grafo direcionado");
 		g = new GrafoDirecionado("Grafo");
 	}
 
+	/**
+	 * Gerar grafo completo
+	 */
 	private static void gerarGrafoCompleto(Grafo g) {
 		System.out.println();
-		System.out.println("3 - Gerar grafo completo");
-		g = new GrafoCompleto("Grafo");
+		System.out.println("3 - Gerar grafo completo - digite o valor da ordem");
+		g = new GrafoCompleto(entrada.nextInt());
 	}
 
+	/**
+	 * Chamada do metodo salvar
+	 */
 	public static void salvarGrafo(Grafo g) throws IOException {
 		System.out.println();
 		System.out.println("2 - Salvar o grafo feito");
@@ -75,6 +90,9 @@ public class App {
 		g.salvar(nome);
 	}
 
+	/**
+	 * Chamada do metodo carregar
+	 */
 	public static void carregarGrafo(Grafo g) throws FileNotFoundException {
 		System.out.println();
 		System.out.println("1 - Carregar um grafo");
@@ -82,6 +100,9 @@ public class App {
 		g.carregar("codigo/Grafos/docs/grafo.csv");
 	}
 
+	/**
+	 * Menu de opções para a aplicação
+	 */
 	private static void menu() {
 		System.out.println("Escolha uma opção:");
 		System.out.println("0 - Sair do app");

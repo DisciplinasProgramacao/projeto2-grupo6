@@ -7,26 +7,41 @@ import java.util.TreeMap;
 
 public abstract class GrafoMutavel extends Grafo {
 
+	/**
+	 * Construtor com chamada do super
+	 */
 	public GrafoMutavel(String nome) {
 		super(nome);
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Metodo para adicionar um novo vertice ao grafo
+	 *
+	 * @param id
+	 * @return booleano com true ou false para adição do vértice
+	 */
 	public boolean addVertice(int id) {
 		Vertice verticeNovo = new Vertice(id);
 		return this.vertices.add(id, verticeNovo);
 	}
 
+	/**
+	 * Metodo de remoção do vertice
+	 *
+	 * @param id
+	 * @return id do vertice removido
+	 */
 	public Vertice removeVertice(int id) {
 
 		Vertice[] vertices1 = new Vertice[vertices.size()];
 		Vertice[] percorreVertice = vertices.allElements(vertices1);
 		Aresta aux;
 
-		for(int i = 1; i <= percorreVertice.length; i++) {
+		for (int i = 1; i <= percorreVertice.length; i++) {
 			aux = percorreVertice[i].existeAresta(id);
 
-			if(aux != null) {
+			if (aux != null) {
 				percorreVertice[i].removeAresta(id);
 			}
 		}
@@ -34,10 +49,21 @@ public abstract class GrafoMutavel extends Grafo {
 		return vertices.remove(id);
 	}
 
+	/**
+	 * metodo abstrato booleano de adição de aresta
+	 */
 	public abstract boolean addAresta(int origem, int destino, int peso);
 
+	/**
+	 * metodo abstrato booleano de remoção de aresta
+	 */
 	public abstract Aresta removAresta(int origem, int destino);
 
+	/**
+	 * metodo carregar grafo
+	 * 
+	 * @param nomeArquivo
+	 */
 	public void carregar(String nomeArquivo) throws FileNotFoundException {
 
 		try {
@@ -45,7 +71,7 @@ public abstract class GrafoMutavel extends Grafo {
 			String linha = "";
 			String[] item;
 
-			while (sc.hasNextLine()){
+			while (sc.hasNextLine()) {
 				linha = sc.nextLine();
 				item = linha.split(",");
 
@@ -64,6 +90,11 @@ public abstract class GrafoMutavel extends Grafo {
 		}
 	}
 
+	/**
+	 * metodo para salvar o grafo
+	 * 
+	 * @param nomeArquivo
+	 */
 	public void salvar(String nomeArquivo) throws IOException {
 		FileWriter novoArquivo = new FileWriter(nomeArquivo);
 		novoArquivo.write("origem,destino,peso\\n");

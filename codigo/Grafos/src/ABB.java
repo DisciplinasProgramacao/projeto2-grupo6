@@ -27,7 +27,7 @@ import java.util.TreeMap;
 /**
  * Classe que encapsula uma árvore binária de buscas
  */
-public class ABB<T>{
+public class ABB<T> {
 
 	private TreeMap<Integer, T> data;
 
@@ -98,9 +98,5 @@ public class ABB<T>{
 	public T[] allElements(T[] array) {
 		T[] allData = this.data.values().toArray(array);
 		return allData;
-	}
-
-	public TreeMap<Integer, T> getTreeMap(){
-		return this.data;
 	}
 }

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
@@ -8,10 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-=======
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
->>>>>>> fff88e3c70e68fa4be15f2ecb2da32fabbc9ff24
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -8,11 +8,7 @@ public class GrafoCompletoTest {
     @Test
     public void testarGrafoCompleto() {
         GrafoCompleto g = new GrafoCompleto(5);
-<<<<<<< HEAD
-        assertEquals(4, g.ordem());
-=======
         assertEquals(4, g.existeVertice(4).grau());
->>>>>>> fff88e3c70e68fa4be15f2ecb2da32fabbc9ff24
     }
 
     @Test
@@ -31,4 +27,4 @@ public class GrafoCompletoTest {
         assertTrue(g.completo());
     }
 
-} 
+}

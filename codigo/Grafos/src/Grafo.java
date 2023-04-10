@@ -106,7 +106,6 @@ public abstract class Grafo {
 	 * @param ListaDeVertices
 	 * @return subgrafo
 	 */
-<<<<<<< HEAD
 	public Grafo subGrafo(Lista<Integer> vertices) throws InvalidParameterException {
 		// FALTA TERMINAR!!!!!!
 		Vertice[] listaVertices = listaVertices();
@@ -118,63 +117,10 @@ public abstract class Grafo {
 					// se existir, entao adicionar a posicao no subgrafo
 					// Vertice v = new vertice(cadaVertice.getID())
 					// g.add(v.getId())
-=======
-	// public Grafo subGrafo(Lista<Integer> vertices) throws
-	// InvalidParameterException {
-	// Grafo subgrafo = new Grafo("Subgrafo de " + this.nome);
-
-	// Vertice[] listaVertices = listaVertices();
-	// for (Integer i : vertices.allElements(null)) {
-	// if (this.existeVertice(i) == null) {
-	// throw new InvalidParameterException("Um vertice não pertence ao Grafo
-	// original");
-	// }
-	// subgrafo.addVertice(i);
-	// }
-
-	// for (Vertice v : listaVertices) {
-	// for (Aresta a : v.listaArestas()) {
-	// if (this.existeVertice(a.destino()) != null) {
-	// subgrafo.addAresta(v.getId(), a.destino());
-	// }
-	// }
-	// }
-
-	// return subgrafo;
-	// }
-
-	public int tamanho() {
-
-		int totalArestas = 0;
-
-		Vertice[] allVertice = listaVertices();
-
-		// limpando todas as visitas de todas as arestas
-		for (Vertice vertice : allVertice) {
-			Aresta[] listaArestas = vertice.listaArestas();
-			for (Aresta aresta : listaArestas) {
-				aresta.limparVisita();
-			}
-		}
-
-		// Passeando por todas as aresas
-		for (Vertice vertice : allVertice) {
-			Aresta[] listaArestas = vertice.listaArestas();
-			for (Aresta aresta : listaArestas) {
-				if (!aresta.visitada()) {
-					totalArestas++;
-					aresta.visitar();
-					// verificando se existe uma aresta duplicada, se existe, marco como visitada.
-					Aresta arestaDestino = vertices.find(aresta.destino()).existeAresta(vertice.getId());
-					if (arestaDestino != null) {
-						arestaDestino.visitar();
-					}
->>>>>>> fff88e3c70e68fa4be15f2ecb2da32fabbc9ff24
 				}
 			}
 		}
 
-<<<<<<< HEAD
 		/*
 		 * 1. criar um subgrafo
 		 * 2. verificar se todos vertices estao na lista de vertices e inserir no
@@ -189,22 +135,11 @@ public abstract class Grafo {
 
 	public int tamanho() {
 		return Integer.MIN_VALUE;
-=======
-		// resetando as visitas para não atrapalhar as buscas.
-		for (Vertice vertice : allVertice) {
-			Aresta[] listaArestas = vertice.listaArestas();
-			for (Aresta aresta : listaArestas) {
-				aresta.limparVisita();
-			}
-		}
-
-		return totalArestas + vertices.size();
->>>>>>> fff88e3c70e68fa4be15f2ecb2da32fabbc9ff24
 	}
 
 	/**
 	 * Método que retornar a ordem do grafo.
-	 * 
+	 *
 	 * @return int com a quantidade de vértices do grafo.
 	 */
 	public int ordem() {

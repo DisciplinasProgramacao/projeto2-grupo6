@@ -23,9 +23,8 @@ public class GrafoNaoDirecionado extends GrafoMutavel {
 		Vertice v_destiny = this.existeVertice(destino);
 
 		if (v_origin != null && v_destiny != null) {
-			result = (v_origin.addAresta(destino, peso) && v_destiny.addAresta(origem, peso)
-					&& v_destiny.addAresta(origem, peso)
-					&& v_destiny.addAresta(destino, peso));
+			result = (v_origin.addAresta(destino, peso)
+					&& v_destiny.addAresta(origem, peso));
 		}
 
 		return result;

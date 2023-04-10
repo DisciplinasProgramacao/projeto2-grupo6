@@ -26,6 +26,13 @@ public abstract class GrafoMutavel extends Grafo {
 		return vertices.add(id, novo);
 	}
 
+	/**
+	 * Remove um vértice com o id especificado. Ignora a ação se não houver o
+	 * vértice e retorsa false. caso positivo retorna o vértice removido.
+	 * 
+	 * @param id O identificador do vértice a ser removido
+	 * @return vértice removido
+	 */
 	public Vertice removeVertice(int id) {
 		return vertices.remove(id);
 	}

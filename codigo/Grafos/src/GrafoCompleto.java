@@ -1,5 +1,5 @@
 public class GrafoCompleto extends Grafo {
-	
+
 	/**
 	 * Construtor de um grafo completo
 	 *
@@ -8,11 +8,22 @@ public class GrafoCompleto extends Grafo {
 	public GrafoCompleto(int ordem) {
 		super("Grafo Completo");
 
-		for (int i = 0; i < ordem; i++)
-			this.vertices.add(i, new Vertice(i));
+		for (int i = 0; i < ordem; i++) {
+			Vertice vertice = new Vertice(i);
+			if (this.existeVertice(i) == null) {
+				vertices.add(i, vertice);
+			}
+		}
 
-		for (int i = 0; i < ordem; i++)
-			for (int j = i + 1; j < ordem; j++)
-				addAresta(i, j);
+		Vertice[] allVertices = this.listaVertices();
+
+		for (Vertice verticeOrigem : allVertices) {
+			for (Vertice verticeDestino : allVertices) {
+				if (verticeOrigem.existeAresta(verticeDestino.getId()) == null
+						&& verticeDestino.getId() != verticeOrigem.getId()) {
+					verticeOrigem.addAresta(verticeDestino.getId());
+				}
+			}
+		}
 	}
 }

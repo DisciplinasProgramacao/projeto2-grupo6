@@ -8,7 +8,7 @@ public class GrafoDirecionado extends GrafoMutavel {
 	}
 
 	/**
-	 * metodo para adicionar aresta a um vertice
+	 * método para adicionar aresta a um vértice
 	 *
 	 * @param origin
 	 * @param destiny
@@ -24,22 +24,22 @@ public class GrafoDirecionado extends GrafoMutavel {
 		Vertice v_destiny = this.existeVertice(destiny);
 
 		if (v_origin != null && v_destiny != null) {
-			result = (v_origin.addAresta(destiny, weight) && v_destiny.addAresta(origin, weight));
+			result = (v_origin.addAresta(destiny, weight));
 		}
 
 		return result;
 	}
 
 	/**
-	 * metodo para remocao de aresta
-	 * 
+	 * método para remoção de aresta
+	 *
 	 * @param origin
 	 * @param destiny
 	 *
-	 * @return aresta
+	 * @return aresta removida
 	 */
 	@Override
-	public Aresta removeAresta(int origem, int destino) {
-		return null;
+	public Aresta removeAresta(int origin, int destiny) {
+		return vertices.find(origin).removeAresta(destiny);
 	}
 }

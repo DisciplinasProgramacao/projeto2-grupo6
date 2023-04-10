@@ -74,8 +74,11 @@ public abstract class Grafo {
 	 * @param IdVerticeB
 	 * @return aresta
 	 */
-	public Aresta existeAresta(int verticeA, int verticeB) {
-		return null;
+	public Aresta existeAresta(int origin, int destiny) {
+
+		Vertice og = vertices.find(origin);
+
+		return og.existeAresta(destiny);
 	}
 
 	/**
@@ -94,25 +97,30 @@ public abstract class Grafo {
 	 * @return subgrafo
 	 */
 	public Grafo subGrafo(Lista<Integer> vertices) throws InvalidParameterException {
-		Grafo subgrafo = new Grafo("Subgrafo de " + this.nome);
-
+		// FALTA TERMINAR!!!!!!
 		Vertice[] listaVertices = listaVertices();
-		for (Integer i : vertices.allElements(null)) {
-			if (this.existeVertice(i) == null) {
-				throw new InvalidParameterException("Um vertice não pertence ao Grafo original");
-			}
-			subgrafo.addVertice(i);
-		}
-
-		for (Vertice v : listaVertices) {
-			for (Aresta a : v.listaArestas()) {
-				if (this.existeVertice(a.destino()) != null) {
-					subgrafo.addAresta(v.getId(), a.destino());
+		Lista<Integer> listaQualquer = new Lista<>();
+		Grafo sub = new GrafoNaoDirecionado("subgrafo");
+		for (int i = 0; i < vertices.size(); i++) {
+			for (Vertice cadaVertice : listaVertices) {
+				if (true) { // comparar a lista do subgrafo com o grafo original
+					// se existir, entao adicionar a posicao no subgrafo
+					// Vertice v = new vertice(cadaVertice.getID())
+					// g.add(v.getId())
 				}
 			}
 		}
 
-		return subgrafo;
+		/*
+		 * 1. criar um subgrafo
+		 * 2. verificar se todos vertices estao na lista de vertices e inserir no
+		 * subgrafo
+		 * 3. no meu subgrafo dou um new Vertice de todos os vertices e dps um add
+		 * 4. para cada vertice do subgrafo verificar se o vertice destino existe no
+		 * subgrafo e ligar com uma aresta
+		 * 5. return subgrafo
+		 */
+		return null;
 	}
 
 	public int tamanho() {

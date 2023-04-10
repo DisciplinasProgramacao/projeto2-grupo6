@@ -9,13 +9,8 @@ public class GrafoCompletoTest {
      */
     @Test
     public void testarGrafoCompleto() {
-        GrafoCompleto g = new GrafoCompleto("TesteGrafoCompleto");
-        g.addVertice(1);
-        g.addVertice(2);
-        g.addVertice(3);
-        int ordem = g.ordem();
-        g.GrafoCompletoBuild(ordem);
-        assertEquals(2, g.ordem());
+        GrafoCompleto g = new GrafoCompleto(5);
+        assertEquals(4, g.ordem());
     }
 
 }

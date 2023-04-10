@@ -1,5 +1,7 @@
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -56,9 +58,10 @@ public abstract class GrafoMutavel extends Grafo {
 	}
 
 	/**
-	 * metodo carregar grafo
-	 * 
+	 * método para carregar grafo
+	 *
 	 * @param nomeArquivo
+	 * @throws FileNotFoundException
 	 */
 	public void carregar(String nomeArquivo) throws FileNotFoundException {
 		Scanner sc = new Scanner(new File(nomeArquivo));

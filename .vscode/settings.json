@@ -1,3 +1,9 @@
 {
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.test.config": {
+        "workingDirectory": "C:\\temp\\LPM-N\\projeto2-grupo6\\codigo\\Grafos\\src"
+
+
+
+    }
 }

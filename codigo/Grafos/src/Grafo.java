@@ -23,6 +23,8 @@
  * SOFTWARE.
  */
 
+import java.security.InvalidParameterException;
+
 /**
  * Classe básica para um Grafo simples não direcionado.
  */

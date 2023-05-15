@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public abstract class GrafoMutavel extends Grafo {
@@ -92,7 +93,7 @@ public abstract class GrafoMutavel extends Grafo {
 	public void salvar(String nomeArquivo) throws IOException {
 		FileWriter novoArquivo = new FileWriter(nomeArquivo);
 		novoArquivo.write("origem,destino,peso\n");
-
+		Path caminho = Path.of(nomeArquivo).toAbsolutePath();
 		Vertice[] listaVertices = listaVertices();
 		for (Vertice vertice : listaVertices) {
 			Aresta[] listaArestas = vertice.listaArestas();
